@@ -615,7 +615,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
             @Override
             public void onConnected(Room room) {
                 localParticipant = room.getLocalParticipant();
-                if (localVideoTrack != null && this.enableVideo) {
+                if (localVideoTrack != null && enableVideo) {
                   localParticipant.publishTrack(localVideoTrack);
                 }
                 WritableMap event = new WritableNativeMap();
