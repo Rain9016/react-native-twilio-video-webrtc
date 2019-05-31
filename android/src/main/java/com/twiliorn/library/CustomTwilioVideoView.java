@@ -322,7 +322,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
         this.roomName = roomName;
         this.accessToken = accessToken;
         this.enableRemoteAudio = enableAudio;
-        this.enableVideo = enableVideo
+        this.enableVideo = enableVideo;
 
         Log.i("CustomTwilioVideoView", "Starting connect flow " + enableAudio);
 
