@@ -89,6 +89,7 @@ import static com.twiliorn.library.CustomTwilioVideoView.Events.ON_VIDEO_CHANGED
 public class CustomTwilioVideoView extends View implements LifecycleEventListener, AudioManager.OnAudioFocusChangeListener {
     private static final String TAG = "CustomTwilioVideoView";
     private boolean enableRemoteAudio = false;
+    private boolean enableVideo = false;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({Events.ON_CAMERA_SWITCHED,
@@ -321,6 +322,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
         this.roomName = roomName;
         this.accessToken = accessToken;
         this.enableRemoteAudio = enableAudio;
+        this.enableVideo = enableVideo
 
         Log.i("CustomTwilioVideoView", "Starting connect flow " + enableAudio);
 
@@ -613,6 +615,9 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
             @Override
             public void onConnected(Room room) {
                 localParticipant = room.getLocalParticipant();
+                if (localVideoTrack != null && this.enableVideo) {
+                  localParticipant.publishTrack(localVideoTrack);
+                }
                 WritableMap event = new WritableNativeMap();
                 event.putString("roomName", room.getName());
                 event.putString("roomSid", room.getSid());
