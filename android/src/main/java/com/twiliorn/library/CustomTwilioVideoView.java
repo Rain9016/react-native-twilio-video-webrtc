@@ -219,7 +219,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
                 }
         );
 
-        if (cameraCapturer.getSupportedFormats().size() > 0) {
+        if (cameraCapturer.getSupportedFormats().size() > 0 && enableVideo) {
             localVideoTrack = LocalVideoTrack.create(getContext(), enableVideo, cameraCapturer, buildVideoConstraints());
             if (thumbnailVideoView != null && localVideoTrack != null) {
                 localVideoTrack.addRenderer(thumbnailVideoView);
